@@ -84,7 +84,7 @@ const data: DeckData = {
     { title: "宙斯鬼龙" },
     { title: "连击熊千面" },
     { title: "密勒顿" },
-    { title: "梦幻" },
+    { title: "雪道梦幻" },
     { title: "古剑豹" },
     { title: "一击洛奇亚" },
     { title: "沙奈朵" },
