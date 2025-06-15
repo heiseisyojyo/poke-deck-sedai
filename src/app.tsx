@@ -79,29 +79,34 @@ export const App = () => {
     year.map((item) => item.title).slice(0, 10)
   ).length
 
-  const prompt = useMemo(() => {
-    const allTitles = Object.values(animeData).flatMap((year) =>
-      year.map((item) => item.title).slice(0, 10)
-    )
-    const selectedTitles = allTitles.filter((title) =>
-      selectedAnime.includes(title)
-    )
-    const unselectedTitles = allTitles.filter(
-      (title) => !selectedAnime.includes(title)
-    )
-return `
-请根据以下宝可梦卡组游玩记录，分析用户的偏好环境，并生成一段简洁的倾向报告：
+const prompt = useMemo(() => {
+  const promptLines: string[] = []
 
-你所选择的宝可梦卡组如下（共 ${selectedTitles.length} 个）：
-${selectedTitles.map((title) => `- ${title}`).join("\n")}
+  for (const [year, items] of Object.entries(animeData)) {
+    const titles = items.map((item) => item.title).slice(0, 10)
+    const selected = titles.filter((t) => selectedAnime.includes(t))
+    const unselected = titles.filter((t) => !selectedAnime.includes(t))
 
-未选择的卡组如下（共 ${unselectedTitles.length} 个）：
-${unselectedTitles.map((title) => `- ${title}`).join("\n")}
+    if (selected.length > 0 || unselected.length > 0) {
+      promptLines.push(`【${year}】`)
+      if (selected.length > 0) {
+        promptLines.push("已选择：")
+        selected.forEach((title) => promptLines.push(`- ${title}`))
+      }
+      if (unselected.length > 0) {
+        promptLines.push("未选择：")
+        unselected.forEach((title) => promptLines.push(`- ${title}`))
+      }
+      promptLines.push("") // 空行分隔
+    }
+  }
 
-${analyzeEnv(selectedTitles)}
-`.trim()
+  return (
+    promptLines.join("\n") +
+    "\n\n请根据以上内容生成一份卡组偏好分析报告。"
+  )
+}, [selectedAnime])
 
-  }, [selectedAnime])
 
   return (
     <>
