@@ -113,7 +113,7 @@ ${analyzeEnv(selectedTitles)}
               <div className="border-b justify-between p-2 text-lg font-bold flex">
                 <h1>
                   卡组世代 - 点击选择你玩过的卡组
-                  <span className="ml-2 text-zinc-400 font-medium">集换社</span>
+                  <span className="ml-2 text-zinc-400 font-medium">详情见集换社卡组广场</span>
                 </h1>
                 <span className="shrink-0 whitespace-nowrap">
                   我玩过 {selectedAnime.length} / {totalAnime} 个卡组
