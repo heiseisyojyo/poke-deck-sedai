@@ -89,8 +89,9 @@ export const App = () => {
     const unselectedTitles = allTitles.filter(
       (title) => !selectedAnime.includes(title)
     )
+return `
+请根据以下宝可梦卡组游玩记录，分析用户的偏好环境，并生成一段简洁的倾向报告：
 
-    return `
 你所选择的宝可梦卡组如下（共 ${selectedTitles.length} 个）：
 ${selectedTitles.map((title) => `- ${title}`).join("\n")}
 
@@ -98,7 +99,8 @@ ${selectedTitles.map((title) => `- ${title}`).join("\n")}
 ${unselectedTitles.map((title) => `- ${title}`).join("\n")}
 
 ${analyzeEnv(selectedTitles)}
-    `.trim()
+`.trim()
+
   }, [selectedAnime])
 
   return (
