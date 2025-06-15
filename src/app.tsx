@@ -182,7 +182,6 @@ ${analyzeEnv(selectedTitles)}
               setSelectedAnime(
                 Object.values(animeData)
                   .flatMap((year) => year.map((item) => item.title))
-                  .slice(0, 10)
               )
             }}
           >
