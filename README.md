@@ -1,4 +1,4 @@
-# anime-sedai
+# poke-deck-sedai
 
 To install dependencies:
 
